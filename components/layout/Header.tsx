@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { SearchBar } from '../ui/SearchBar';
 import { cn } from '../../lib/utils';
 
@@ -27,9 +28,14 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Logo or Title */}
           {showLogo ? (
             <Link href="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-dwelloo-primary lowercase">
-                dwelloo.
-              </h1>
+              <Image
+                src="/assets/comyyn-logo.png"
+                alt="Comyyn"
+                width={180}
+                height={48}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </Link>
           ) : title ? (
             <h1 className="text-lg font-semibold text-gray-900">{title}</h1>
@@ -123,9 +129,14 @@ export const MobileHeader: React.FC<{
           </button>
         ) : (
           <Link href="/" className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-dwelloo-primary lowercase">
-              dwelloo.
-            </h1>
+            <Image
+              src="/assets/comyyn-logo.png"
+              alt="Comyyn"
+              width={180}
+              height={48}
+              className="h-8 w-auto object-contain"
+              priority
+            />
           </Link>
         )}
 

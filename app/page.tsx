@@ -16,7 +16,7 @@ const NEAR_YOU_PROPERTIES = [
     city: 'Miami',
     state: 'FL',
     followers: 9200,
-    image: 'https://lh3.googleusercontent.com/p/AF1QipO0-MKo7BYTrJDrLAoWVprtEJGTtAOgcNA0OImh=s1360-w1360-h1020-rw',
+    image: 'https://images.myrazz.com/uc-image/LbwG8Dt4iA3nWn2Nh/-/format/webp/-/quality/lighter/-/resize/x1600/bezel_2-22_044.jpeg.webp',
   },
   {
     id: '2',

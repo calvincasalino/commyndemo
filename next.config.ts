@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const repoName = '/dwelloodemo'; 
+const repoName = '/commyndemo'; 
 
 const nextConfig: NextConfig = {
   output: 'export', // Required for GitHub Pages
@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: '*.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.myrazz.com',
       },
     ],
   },

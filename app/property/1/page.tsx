@@ -17,9 +17,9 @@ const PROPERTY_DATA = {
   zipCode: '33132',
   followers: 9240,
   images: [
-    'https://lh3.googleusercontent.com/p/AF1QipO0-MKo7BYTrJDrLAoWVprtEJGTtAOgcNA0OImh=s1360-w1360-h1020-rw',
-    'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=80',
+    'https://images.myrazz.com/uc-image/prccDemxDYv74atd7/-/format/webp/-/quality/lighter/-/resize/x1200/-/scale_crop/640x640/center/bezel_2-22_048.jpeg.webp',
+    'https://images.myrazz.com/uc-image/42H2cRvSErDq2BcKG/-/format/webp/-/quality/lighter/-/resize/x1200/-/scale_crop/640x640/center/bezel_2-22_091.jpeg.webp',
+    'https://images.myrazz.com/uc-image/pyt85hLzmt2HGPsfb/-/format/webp/-/quality/lighter/-/resize/x1200/-/scale_crop/640x640/center/bezel_2-22_030.jpeg.webp',
   ],
 };
 
@@ -28,19 +28,22 @@ const PROPERTY_VIDEOS = [
   // HERO BLOCK (Items 1-5)
   {
     id: 'v1',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80',
+    thumbnailUrl: '/thumbnails/bezel-1-thumb.png',
+    videoUrl: '/videos/bezel-1.mp4',
     likeCount: 15400,
     user: { username: 'sarah_condo' },
   },
   {
     id: 'v2',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&q=80',
+    thumbnailUrl: '/thumbnails/bezel-2-thumb.png',
+    videoUrl: '/videos/bezel-2.mp4',
     likeCount: 8200,
     user: { username: 'miami_living' },
   },
   {
     id: 'v3',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&q=80',
+    thumbnailUrl: '/thumbnails/bezel-3-thumb.png',
+    videoUrl: '/videos/bezel-3.mp4',
     likeCount: 3200, 
     user: { username: 'dave_realtor' },
   },

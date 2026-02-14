@@ -5,11 +5,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { cn, formatNumber } from '../../lib/utils';
 import { Button } from '../ui/button';
+import { Modal } from '../ui/Modal';
 
 // Define the interface locally so we don't need an external file
 export interface MockVideo {
   id: string;
   thumbnailUrl: string;
+  videoUrl?: string;
   likeCount: number;
   user: {
     username: string;
@@ -47,15 +49,21 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
   className,
 }) => {
   const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+  const [activeVideo, setActiveVideo] = useState<MockVideo | null>(null);
 
   const handleImageError = useCallback((videoId: string) => {
     setImageErrors(prev => ({ ...prev, [videoId]: true }));
   }, []);
 
-  // Sort videos by likes and calculate max for dynamic sizing
-  const sortedVideos = useMemo(() => {
-    return [...videos].sort((a, b) => b.likeCount - a.likeCount);
-  }, [videos]);
+  const handleOpenVideo = useCallback((video: MockVideo) => {
+    if (video.videoUrl) {
+      setActiveVideo(video);
+    }
+  }, []);
+
+  const handleCloseVideo = useCallback(() => {
+    setActiveVideo(null);
+  }, []);
 
   const maxLikes = useMemo(() => {
     return Math.max(...videos.map(v => v.likeCount), 1);
@@ -69,24 +77,17 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
     <div className={cn('px-4 pb-20', className)}>
       {/* 4-Column Masonry Grid - matching Figma design */}
       <div className="grid grid-cols-4 gap-1 auto-rows-[80px]">
-        {sortedVideos.map((video, index) => {
+        {videos.map((video, index) => {
           const tileSize = getTileSize(video.likeCount, index, maxLikes);
+          const isPlayable = Boolean(video.videoUrl);
           // Determine grid span based on tile size
           const spanClasses = {
             small: 'col-span-1 row-span-1',
             medium: 'col-span-1 row-span-2',
             large: 'col-span-2 row-span-2',
           };
-
-          return (
-            <Link
-              key={video.id}
-              href={`/video/${video.id}`}
-              className={cn(
-                'relative bg-gray-100 rounded-lg overflow-hidden group',
-                spanClasses[tileSize]
-              )}
-            >
+          const tileContent = (
+            <>
               {/* Thumbnail */}
               {!imageErrors[video.id] ? (
                 <Image
@@ -122,10 +123,58 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
                   {formatNumber(video.likeCount)}
                 </span>
               </div>
-            </Link>
+            </>
+          );
+
+          if (isPlayable) {
+            return (
+              <button
+                key={video.id}
+                type="button"
+                onClick={() => handleOpenVideo(video)}
+                className={cn(
+                  'relative bg-gray-100 rounded-lg overflow-hidden group text-left',
+                  spanClasses[tileSize]
+                )}
+                aria-label={`Play video by ${video.user.username}`}
+              >
+                {tileContent}
+              </button>
+            );
+          }
+
+          return (
+            <div
+              key={video.id}
+              className={cn(
+                'relative bg-gray-100 rounded-lg overflow-hidden group',
+                spanClasses[tileSize]
+              )}
+            >
+              {tileContent}
+            </div>
           );
         })}
       </div>
+
+      <Modal
+        isOpen={Boolean(activeVideo)}
+        onClose={handleCloseVideo}
+        size="lg"
+        className="max-w-[420px]"
+      >
+        <div className="w-full aspect-[9/16] bg-black rounded-xl overflow-hidden">
+          <video
+            key={activeVideo?.videoUrl}
+            src={activeVideo?.videoUrl}
+            className="h-full w-full"
+            controls
+            autoPlay
+            playsInline
+            preload="metadata"
+          />
+        </div>
+      </Modal>
 
       {/* Load More Button */}
       {hasMore && (
