@@ -132,6 +132,7 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
                 key={video.id}
                 type="button"
                 onClick={() => handleOpenVideo(video)}
+                onPointerUp={() => handleOpenVideo(video)}
                 className={cn(
                   'relative bg-gray-100 rounded-lg overflow-hidden group text-left',
                   spanClasses[tileSize]
@@ -162,6 +163,7 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
         onClose={handleCloseVideo}
         size="lg"
         className="max-w-[420px]"
+        closeOnOverlayClick={false}
       >
         <div className="w-full aspect-[9/16] bg-black rounded-xl overflow-hidden">
           <video
@@ -170,8 +172,10 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
             className="h-full w-full"
             controls
             autoPlay
+            muted
             playsInline
             preload="metadata"
+            poster={activeVideo?.thumbnailUrl}
           />
         </div>
       </Modal>
