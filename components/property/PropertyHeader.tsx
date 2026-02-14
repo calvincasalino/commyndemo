@@ -68,8 +68,10 @@ export const PropertyHeader: React.FC<PropertyHeaderProps> = ({
 
             {/* Back Button */}
             <button
+              type="button"
               onClick={() => router.back()}
-              className="absolute top-12 left-4 w-10 h-10 bg-white rounded-[10px] shadow-sm flex items-center justify-center z-10"
+              onTouchEnd={() => router.back()}
+              className="absolute top-12 left-4 w-10 h-10 bg-white rounded-[10px] shadow-sm flex items-center justify-center z-10 touch-manipulation"
               aria-label="Go back"
             >
               <svg

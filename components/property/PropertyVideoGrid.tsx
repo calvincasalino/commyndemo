@@ -133,6 +133,7 @@ export const PropertyVideoGrid: React.FC<PropertyVideoGridProps> = ({
                 type="button"
                 onClick={() => handleOpenVideo(video)}
                 onPointerUp={() => handleOpenVideo(video)}
+                onTouchEnd={() => handleOpenVideo(video)}
                 className={cn(
                   'relative bg-gray-100 rounded-lg overflow-hidden group text-left',
                   spanClasses[tileSize]
