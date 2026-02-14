@@ -1,9 +1,9 @@
+import React from 'react'
 import Link from 'next/link'
-import { LucideIcon } from 'lucide-react'
 
 interface SectionHeaderProps {
   title: string
-  icon: LucideIcon
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
   viewMoreHref?: string
 }
 
