@@ -5,6 +5,8 @@ const repoName = '/commyndemo';
 const nextConfig: NextConfig = {
   output: 'export', // Required for GitHub Pages
   basePath: process.env.NODE_ENV === 'production' ? repoName : undefined,
+  assetPrefix: process.env.NODE_ENV === 'production' ? repoName : undefined,
+  trailingSlash: true,
   images: {
     unoptimized: true, // Required for static export
     remotePatterns: [
